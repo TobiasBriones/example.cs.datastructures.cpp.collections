@@ -6,6 +6,47 @@
  */
 
 #pragma once
-class ArrayList
+#include "List.h"
+
+template <typename T>
+class ArrayList : public List<T>
 {
+
+	private:
+		static const int DEFAULT_CAPACITY;
+		static const float FACTOR;
+		int capacity;
+		int size;
+		T* array;
+
+		void init(int);
+		void checkRange();
+		void shiftRigth(int);
+		void shiftLeft(int);
+
+	protected:
+		bool isInBounds(int) const;
+
+	public:
+		ArrayList();
+		ArrayList(ArrayList<T>*);
+		ArrayList(int);
+		~ArrayList();
+
+		int getSize() const;
+		bool isEmpty() const;
+		T get(int) const;
+		T getFirst() const;
+		T getLast() const;
+		//Iterator iterate() const;
+		//int getMemoryUsage() const;
+		//string toString() const;
+		void add(T);
+		void add(int, T);
+		void set(int, T);
+		void remove(int);
+		void removeFirst();
+		void removeLast();
+		void clear();
+
 };

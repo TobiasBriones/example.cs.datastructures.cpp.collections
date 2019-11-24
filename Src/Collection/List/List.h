@@ -7,8 +7,10 @@
 
 #pragma once
 #include <string>
+#include<stdexcept>
 
 using std::string;
+using std::to_string;
 
 template<typename T>
 class List
@@ -18,17 +20,16 @@ class List
 		virtual bool isInBounds(int) const = 0;
 
 	public:
-		List();
+		/*List();
 		List(List<T>*);
-		~List();
+		~List();*/
 
 		virtual int getSize() const = 0;
 		virtual bool isEmpty() const = 0;
 		virtual T get(int) const = 0;
 		virtual T getFirst() const = 0;
 		virtual T getLast() const = 0;
-		virtual int getMemoryUsage() const = 0;
-		virtual string toString() const = 0;
+		//virtual string toString() const = 0;
 		virtual void add(T) = 0;
 		virtual void add(int, T) = 0;
 		virtual void set(int, T) = 0;
