@@ -4,7 +4,7 @@
 Example Project for for implementing a package with several collections/list in C++.
 
 Collections implemented are:
+* Queue
 * ArrayList
 * LinkedList
 * Stack
-* Queue
