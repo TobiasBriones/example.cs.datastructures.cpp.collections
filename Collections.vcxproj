@@ -99,12 +99,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="COLLECTION.CPP" />
-    <ClCompile Include="Src\Collection\List\ArrayList.cpp" />
-    <ClCompile Include="Src\Collection\List\LinkedList.cpp" />
-    <ClCompile Include="Src\Collection\Queue.cpp" />
-    <ClCompile Include="Src\Collection\List\List.cpp" />
     <ClCompile Include="Src\Main.cpp" />
-    <ClCompile Include="Src\Collection\List\Stack.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Src\Collection\Collection.h" />

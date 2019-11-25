@@ -34,7 +34,6 @@ public:
 	virtual T get(int) const = 0;
 	virtual T getFirst() const = 0;
 	virtual T getLast() const = 0;
-	//virtual string toString() const = 0;
 	virtual void add(int, T) = 0;
 	virtual void set(int, T) = 0;
 	virtual void remove(int) = 0;
@@ -42,3 +41,13 @@ public:
 	virtual void removeLast() = 0;
 
 };
+
+template<typename T>
+void List<T>::checkPosition(int position) const
+{
+	if (!isInBounds(position))
+	{
+		string msg = "Invalid position " + to_string(position);
+		throw std::runtime_error(msg);
+	}
+}

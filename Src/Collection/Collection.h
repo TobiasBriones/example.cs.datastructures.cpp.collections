@@ -16,5 +16,6 @@ public:
 	virtual bool isEmpty() const = 0;
 	virtual void add(T) = 0;
 	virtual void clear() = 0;
+	// Add iterator and toString()
 
 };
