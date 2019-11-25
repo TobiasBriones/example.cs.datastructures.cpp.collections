@@ -12,40 +12,40 @@ template <typename T>
 class ArrayList : public List<T>
 {
 
-	private:
-		static const int DEFAULT_CAPACITY;
-		static const float FACTOR;
-		int capacity;
-		int size;
-		T* array;
+private:
+	static const int DEFAULT_CAPACITY;
+	static const float FACTOR;
+	int capacity;
+	int size;
+	T* array;
 
-		void init(int);
-		void checkRange();
-		void shiftRigth(int);
-		void shiftLeft(int);
+	void init(int);
+	void checkRange();
+	void shiftRigth(int);
+	void shiftLeft(int);
 
-	protected:
-		bool isInBounds(int) const;
+protected:
+	bool isInBounds(int) const;
 
-	public:
-		ArrayList();
-		ArrayList(ArrayList<T>*);
-		ArrayList(int);
-		~ArrayList();
+public:
+	ArrayList();
+	ArrayList(ArrayList<T>*);
+	ArrayList(int);
+	~ArrayList();
 
-		int getSize() const;
-		bool isEmpty() const;
-		void add(T);
-		void clear();
+	int getSize() const;
+	bool isEmpty() const;
+	void add(T);
+	void clear();
 
-		T get(int) const;
-		T getFirst() const;
-		T getLast() const;
-		void add(int, T);
-		void set(int, T);
-		void remove(int);
-		void removeFirst();
-		void removeLast();
+	T get(int) const;
+	T getFirst() const;
+	T getLast() const;
+	void add(int, T);
+	void set(int, T);
+	void remove(int);
+	void removeFirst();
+	void removeLast();
 
 };
 
@@ -149,6 +149,24 @@ bool ArrayList<T>::isEmpty() const
 }
 
 template<typename T>
+void ArrayList<T>::add(T item)
+{
+	checkRange();
+	array[size] = item;
+	size++;
+}
+
+template<typename T>
+void ArrayList<T>::clear() {
+	delete[] array;
+	capacity = DEFAULT_CAPACITY;
+	size = 0;
+	array = 0;
+
+	init(capacity);
+}
+
+template<typename T>
 T ArrayList<T>::get(int position) const
 {
 	checkPosition(position);
@@ -209,13 +227,6 @@ T ArrayList<T>::getLast() const
 //
 //}
 
-template<typename T>
-void ArrayList<T>::add(T item)
-{
-	checkRange();
-	array[size] = item;
-	size++;
-}
 
 template<typename T>
 void ArrayList<T>::add(int position, T item)
@@ -264,14 +275,4 @@ void ArrayList<T>::removeLast()
 		throw std::runtime_error(msg);
 	}
 	remove(size - 1);
-}
-
-template<typename T>
-void ArrayList<T>::clear() {
-	delete[] array;
-	capacity = DEFAULT_CAPACITY;
-	size = 0;
-	array = 0;
-
-	init(capacity);
 }
