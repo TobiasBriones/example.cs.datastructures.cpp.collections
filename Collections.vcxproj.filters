@@ -33,9 +33,6 @@
     <ClCompile Include="Src\Collection\List\Stack.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Src\Collection\Collection.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="COLLECTION.CPP">
       <Filter>Source Files</Filter>
     </ClCompile>

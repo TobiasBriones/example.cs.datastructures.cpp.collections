@@ -35,18 +35,16 @@ class ArrayList : public List<T>
 
 		int getSize() const;
 		bool isEmpty() const;
+		void add(T);
+		void clear();
+
 		T get(int) const;
 		T getFirst() const;
 		T getLast() const;
-		//Iterator iterate() const;
-		//int getMemoryUsage() const;
-		//string toString() const;
-		void add(T);
 		void add(int, T);
 		void set(int, T);
 		void remove(int);
 		void removeFirst();
 		void removeLast();
-		void clear();
 
 };

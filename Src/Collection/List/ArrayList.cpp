@@ -109,11 +109,7 @@ bool ArrayList<T>::isEmpty() const
 template<typename T>
 T ArrayList<T>::get(int position) const 
 {
-	if (!isInBounds(position)) 
-	{
-		string msg = "Invalid position " + to_string(position);
-		throw std::runtime_error(msg);
-	}
+	checkPosition(position);
 	return array[position];
 }
 
@@ -182,18 +178,12 @@ void ArrayList<T>::add(T item)
 template<typename T>
 void ArrayList<T>::add(int position, T item) 
 {
-	if (!isInBounds(position)) {
-		if (position == size)
-		{
-			add(item);
-		}
-		else 
-		{
-			string msg = "Invalid position " + to_string(position);
-			throw std::runtime_error(msg);
-		}
+	if (position == size)
+	{
+		add(item);
 		return;
 	}
+	checkPosition(position);
 	shiftRigth(position);
 	array[position] = item;
 }
@@ -201,22 +191,14 @@ void ArrayList<T>::add(int position, T item)
 template<typename T>
 void ArrayList<T>::set(int position, T item)
 {
-	if (!isInBounds(position)) 
-	{
-		string msg = "Invalid position " + to_string(position);
-		throw std::runtime_error(msg);
-	}
+	checkPosition(position);
 	array[position] = item;
 }
 
 template<typename T>
 void ArrayList<T>::remove(int position)
 {
-	if (!isInBounds(position)) 
-	{
-		string msg = "Invalid position " + to_string(position);
-		throw std::runtime_error(msg);
-	}
+	checkPosition(position);
 	shiftLeft(position);
 }
 

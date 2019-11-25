@@ -11,9 +11,6 @@ template<typename T>
 class Collection
 {
 
-protected:
-	static void checkPosition(Collection<T>*, int);
-
 public:
 	virtual int getSize() const = 0;
 	virtual bool isEmpty() const = 0;
