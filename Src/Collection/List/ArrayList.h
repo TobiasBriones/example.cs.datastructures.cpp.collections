@@ -33,6 +33,7 @@ public:
 	ArrayList(int);
 	~ArrayList();
 
+	string toString() const;
 	int getSize() const;
 	bool isEmpty() const;
 	void add(T);
@@ -135,6 +136,11 @@ bool ArrayList<T>::isInBounds(int position) const
 }
 
 // --------------------------------------------- PUBLIC METHODS --------------------------------------------- //
+template<typename T>
+string ArrayList<T>::toString() const {
+	return List<T>::toString();
+}
+
 template<typename T>
 int ArrayList<T>::getSize() const
 {
