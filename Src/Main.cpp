@@ -12,7 +12,7 @@ using namespace std;
 
 int main()
 {
-	ArrayList<int> list;
+	/*ArrayList<int> list;
 
 	try
 	{
@@ -27,6 +27,27 @@ int main()
 	list.add(46);
 	list.add(78);
 	list.add(458);
+	list.add(54);
+	list.add(44);
+	list.add(46);
+	list.add(78);
+	list.add(458);
+	list.add(54);
+	list.add(44);
+	list.add(46);
+	list.add(78);
+	list.add(458);
+	list.add(54);
+	list.add(44);
+	list.add(46);
+	list.add(78);
+	list.add(458);
+	list.add(54);
+	list.add(44);
+	list.add(46);
+	list.add(78);
+	list.add(458);
+	
 	for (int i = 0; i < list.getSize(); i++)
 	{
 		cout << list.get(i) << endl;
@@ -48,6 +69,6 @@ int main()
 	for (int i = 0; i < list.getSize(); i++)
 	{
 		cout << list.get(i) << endl;
-	}
+	}*/
 	return 0;
 }

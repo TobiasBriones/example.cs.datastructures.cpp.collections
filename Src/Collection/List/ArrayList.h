@@ -21,8 +21,8 @@ private:
 
 	void init(int);
 	void checkRange();
-	void shiftRigth(int);
 	void shiftLeft(int);
+	void shiftRigth(int);
 
 protected:
 	bool isInBounds(int) const;
@@ -94,28 +94,16 @@ template<typename T>
 void ArrayList<T>::checkRange() {
 	if (size == capacity)
 	{
-		T* oldArrayPtr = array;
-		int newCapacity = capacity * FACTOR;
-		array = new T[newCapacity];
+		capacity *= FACTOR;
+		T* newArray = new T[capacity];
 
 		for (int i = 0; i < size; i++)
 		{
-			array[i] = oldArrayPtr[i];
+			newArray[i] = array[i];
 		}
-		delete[] oldArrayPtr;
+		delete[] array;
+		array = newArray;
 	}
-}
-
-template<typename T>
-void ArrayList<T>::shiftRigth(int position)
-{
-	checkRange();
-
-	for (int i = size; i > position; i--)
-	{
-		array[i] = array[i - 1];
-	}
-	size++;
 }
 
 template<typename T>
@@ -126,6 +114,17 @@ void ArrayList<T>::shiftLeft(int position)
 	{
 		array[i] = array[i + 1];
 	}
+}
+
+template<typename T>
+void ArrayList<T>::shiftRigth(int position)
+{
+	checkRange();
+	for (int i = size; i > position; i--)
+	{
+		array[i] = array[i - 1];
+	}
+	size++;
 }
 
 // --------------------------------------------- PROTECTED METHODS --------------------------------------------- //
@@ -176,22 +175,14 @@ T ArrayList<T>::get(int position) const
 template<typename T>
 T ArrayList<T>::getFirst() const
 {
-	if (isEmpty())
-	{
-		string msg = "Empty list";
-		throw std::runtime_error(msg);
-	}
+	checkNonEmpty();
 	return array[0];
 }
 
 template<typename T>
 T ArrayList<T>::getLast() const
 {
-	if (isEmpty())
-	{
-		string msg = "Empty list";
-		throw std::runtime_error(msg);
-	}
+	checkNonEmpty();
 	return array[size - 1];
 }
 
@@ -258,21 +249,13 @@ void ArrayList<T>::remove(int position)
 template<typename T>
 void ArrayList<T>::removeFirst()
 {
-	if (isEmpty())
-	{
-		string msg = "Empty list";
-		throw std::runtime_error(msg);
-	}
+	checkNonEmpty();
 	remove(0);
 }
 
 template<typename T>
 void ArrayList<T>::removeLast()
 {
-	if (isEmpty())
-	{
-		string msg = "Empty list";
-		throw std::runtime_error(msg);
-	}
+	checkNonEmpty();
 	remove(size - 1);
 }

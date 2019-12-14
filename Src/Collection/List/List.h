@@ -20,12 +20,10 @@ class List : public Collection<T>
 protected:
 	virtual bool isInBounds(int) const = 0;
 	void checkPosition(int) const;
+	void checkEmpty() const;
+	void checkNonEmpty() const;
 
 public:
-	/*List();
-	List(List<T>*);
-	~List();*/
-
 	virtual int getSize() const = 0;
 	virtual bool isEmpty() const = 0;
 	virtual void add(T) = 0;
@@ -48,6 +46,26 @@ void List<T>::checkPosition(int position) const
 	if (!isInBounds(position))
 	{
 		string msg = "Invalid position " + to_string(position);
+		throw std::runtime_error(msg);
+	}
+}
+
+template<typename T>
+void List<T>::checkEmpty() const
+{
+	if (!isEmpty())
+	{
+		string msg = "Non-Empty list";
+		throw std::runtime_error(msg);
+	}
+}
+
+template<typename T>
+void List<T>::checkNonEmpty() const
+{
+	if (isEmpty())
+	{
+		string msg = "Empty list";
 		throw std::runtime_error(msg);
 	}
 }
