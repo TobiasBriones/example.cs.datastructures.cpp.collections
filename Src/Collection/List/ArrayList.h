@@ -1,4 +1,4 @@
-/**
+/*
  * Copyright (c) 2019 Tobias Briones.
  *
  * This source code is licensed under the MIT license found in the
@@ -29,11 +29,11 @@ protected:
 
 public:
 	ArrayList();
-	ArrayList(ArrayList<T>*);
 	ArrayList(int);
+	ArrayList(ArrayList<T>*, int);
+	ArrayList(ArrayList<T>*);
 	~ArrayList();
 
-	string toString() const;
 	int getSize() const;
 	bool isEmpty() const;
 	void add(T);
@@ -60,12 +60,6 @@ ArrayList<T>::ArrayList()
 }
 
 template<typename T>
-ArrayList<T>::ArrayList(ArrayList<T>* const list)
-{
-	init(list->size);
-}
-
-template<typename T>
 ArrayList<T>::ArrayList(int initialCapacity) {
 	if (initialCapacity <= 0)
 	{
@@ -73,6 +67,28 @@ ArrayList<T>::ArrayList(int initialCapacity) {
 		throw std::runtime_error(msg);
 	}
 	init(initialCapacity);
+}
+
+template<typename T>
+ArrayList<T>::ArrayList(ArrayList<T>* const list, int initialCapacity) // pending, copy any collection instead of only arraylists
+{
+	if (initialCapacity < list.getSize())
+	{
+		string msg = "Initial capacity must not be less than the size of the list to be cloned";
+		throw std::runtime_error(msg);
+	}
+	init(initialCapacity);
+
+	for (int i = 0; i < size; i++)
+	{
+		add(list->get(i));
+	}
+}
+
+template<typename T>
+ArrayList<T>::ArrayList(ArrayList<T>* const list)
+{
+	// call
 }
 
 template<typename T>
@@ -137,11 +153,6 @@ bool ArrayList<T>::isInBounds(int position) const
 
 // --------------------------------------------- PUBLIC METHODS --------------------------------------------- //
 template<typename T>
-string ArrayList<T>::toString() const {
-	return List<T>::toString();
-}
-
-template<typename T>
 int ArrayList<T>::getSize() const
 {
 	return size;
@@ -191,39 +202,6 @@ T ArrayList<T>::getLast() const
 	checkNonEmpty();
 	return array[size - 1];
 }
-
-//template<>
-//string ArrayList<string>::toString() const {
-//	if (isEmpty()) {
-//		return "";
-//
-//	}
-//	string str = "";
-//
-//	for (int i = 0; i < size; i++) {
-//		str += array[i] + "\n";
-//
-//	}
-//	return str;
-//
-//}
-//
-//template<>
-//string ArrayList<int>::toString() const {
-//	if (isEmpty()) {
-//		return "";
-//
-//	}
-//	string str = "";
-//
-//	for (int i = 0; i < size; i++) {
-//		str += to_string(array[i]) + "\n";
-//
-//	}
-//	return str;
-//
-//}
-
 
 template<typename T>
 void ArrayList<T>::add(int position, T item)
