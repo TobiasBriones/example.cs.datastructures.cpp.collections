@@ -12,11 +12,13 @@ class Collection
 {
 
 public:
-	virtual int getSize() const = 0;
-	virtual bool isEmpty() const = 0;
-	virtual void add(T) = 0;
-	virtual void clear() = 0;
+    virtual int getSize() const = 0;
 
+    virtual bool isEmpty() const = 0;
+
+    virtual void add(T) = 0;
+
+    virtual void clear() = 0;
 };
 
 // Possible future implementations

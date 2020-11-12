@@ -6,48 +6,65 @@
  */
 
 #pragma once
+
 #include "List.h"
 
-template <typename T>
+template<typename T>
 class ArrayList : public List<T>
 {
 
 private:
-	static const int DEFAULT_CAPACITY;
-	static const float FACTOR;
-	int capacity;
-	int size;
-	T* array;
+    static const int DEFAULT_CAPACITY;
+    static const float FACTOR;
+    int capacity;
+    int size;
+    T* array;
 
-	void init(int);
-	void checkRange();
-	void shiftLeft(int);
-	void shiftRigth(int);
+    void init(int);
+
+    void checkRange();
+
+    void shiftLeft(int);
+
+    void shiftRigth(int);
 
 protected:
-	bool isInBounds(int) const;
+    bool isInBounds(int) const;
 
 public:
-	ArrayList();
-	ArrayList(int);
-	ArrayList(ArrayList<T>*, int);
-	ArrayList(ArrayList<T>*);
-	~ArrayList();
+    ArrayList();
 
-	int getSize() const;
-	bool isEmpty() const;
-	void add(T);
-	void clear();
+    ArrayList(int);
 
-	T get(int) const;
-	T getFirst() const;
-	T getLast() const;
-	void add(int, T);
-	void set(int, T);
-	void remove(int);
-	void removeFirst();
-	void removeLast();
+    ArrayList(ArrayList<T>*, int);
 
+    ArrayList(ArrayList<T>*);
+
+    ~ArrayList();
+
+    int getSize() const;
+
+    bool isEmpty() const;
+
+    void add(T);
+
+    void clear();
+
+    T get(int) const;
+
+    T getFirst() const;
+
+    T getLast() const;
+
+    void add(int, T);
+
+    void set(int, T);
+
+    void remove(int);
+
+    void removeFirst();
+
+    void removeLast();
 };
 
 template<typename T> const int ArrayList<T>::DEFAULT_CAPACITY = 10;
@@ -56,190 +73,194 @@ template<typename T> const float ArrayList<T>::FACTOR = 1.5;
 template<typename T>
 ArrayList<T>::ArrayList()
 {
-	init(DEFAULT_CAPACITY);
+    init(DEFAULT_CAPACITY);
 }
 
 template<typename T>
-ArrayList<T>::ArrayList(int initialCapacity) {
-	if (initialCapacity <= 0)
-	{
-		string msg = "List capacity must be positive";
-		throw std::runtime_error(msg);
-	}
-	init(initialCapacity);
-}
-
-template<typename T>
-ArrayList<T>::ArrayList(ArrayList<T>* const list, int initialCapacity) // pending, copy any collection instead of only arraylists
+ArrayList<T>::ArrayList(int initialCapacity)
 {
-	if (initialCapacity < list.getSize())
-	{
-		string msg = "Initial capacity must not be less than the size of the list to be cloned";
-		throw std::runtime_error(msg);
-	}
-	init(initialCapacity);
+    if (initialCapacity <= 0)
+    {
+        string msg = "List capacity must be positive";
+        throw std::runtime_error(msg);
+    }
+    init(initialCapacity);
+}
 
-	for (int i = 0; i < size; i++)
-	{
-		add(list->get(i));
-	}
+template<typename T>
+ArrayList<T>::ArrayList(ArrayList<T>* const list,
+                        int initialCapacity) // pending, copy any collection instead of only arraylists
+{
+    if (initialCapacity < list.getSize())
+    {
+        string msg = "Initial capacity must not be less than the size of the list to be cloned";
+        throw std::runtime_error(msg);
+    }
+    init(initialCapacity);
+
+    for (int i = 0; i < size; i++)
+    {
+        add(list->get(i));
+    }
 }
 
 template<typename T>
 ArrayList<T>::ArrayList(ArrayList<T>* const list)
 {
-	// call
+    // call
 }
 
 template<typename T>
 ArrayList<T>::~ArrayList()
 {
-	delete[] array;
-	array = 0;
+    delete[] array;
+    array = 0;
 }
 
 // --------------------------------------------- PRIVATE METHODS --------------------------------------------- //
 template<typename T>
 void ArrayList<T>::init(int capacity)
 {
-	this->capacity = capacity;
-	this->size = 0;
-	this->array = new T[capacity];
+    this->capacity = capacity;
+    this->size = 0;
+    this->array = new T[capacity];
 }
 
 template<typename T>
-void ArrayList<T>::checkRange() {
-	if (size == capacity)
-	{
-		capacity *= FACTOR;
-		T* newArray = new T[capacity];
+void ArrayList<T>::checkRange()
+{
+    if (size == capacity)
+    {
+        capacity *= FACTOR;
+        T* newArray = new T[capacity];
 
-		for (int i = 0; i < size; i++)
-		{
-			newArray[i] = array[i];
-		}
-		delete[] array;
-		array = newArray;
-	}
+        for (int i = 0; i < size; i++)
+        {
+            newArray[i] = array[i];
+        }
+        delete[] array;
+        array = newArray;
+    }
 }
 
 template<typename T>
 void ArrayList<T>::shiftLeft(int position)
 {
-	size--;
-	for (int i = position; i < size; i++)
-	{
-		array[i] = array[i + 1];
-	}
+    size--;
+    for (int i = position; i < size; i++)
+    {
+        array[i] = array[i + 1];
+    }
 }
 
 template<typename T>
 void ArrayList<T>::shiftRigth(int position)
 {
-	checkRange();
-	for (int i = size; i > position; i--)
-	{
-		array[i] = array[i - 1];
-	}
-	size++;
+    checkRange();
+    for (int i = size; i > position; i--)
+    {
+        array[i] = array[i - 1];
+    }
+    size++;
 }
 
 // --------------------------------------------- PROTECTED METHODS --------------------------------------------- //
 template<typename T>
 bool ArrayList<T>::isInBounds(int position) const
 {
-	return position >= 0 && position < size;
+    return position >= 0 && position < size;
 }
 
 // --------------------------------------------- PUBLIC METHODS --------------------------------------------- //
 template<typename T>
 int ArrayList<T>::getSize() const
 {
-	return size;
+    return size;
 }
 
 template<typename T>
 bool ArrayList<T>::isEmpty() const
 {
-	return size == 0;
+    return size == 0;
 }
 
 template<typename T>
 void ArrayList<T>::add(T item)
 {
-	checkRange();
-	array[size] = item;
-	size++;
+    checkRange();
+    array[size] = item;
+    size++;
 }
 
 template<typename T>
-void ArrayList<T>::clear() {
-	delete[] array;
-	capacity = DEFAULT_CAPACITY;
-	size = 0;
-	array = 0;
+void ArrayList<T>::clear()
+{
+    delete[] array;
+    capacity = DEFAULT_CAPACITY;
+    size = 0;
+    array = 0;
 
-	init(capacity);
+    init(capacity);
 }
 
 template<typename T>
 T ArrayList<T>::get(int position) const
 {
-	checkPosition(position);
-	return array[position];
+    checkPosition(position);
+    return array[position];
 }
 
 template<typename T>
 T ArrayList<T>::getFirst() const
 {
-	checkNonEmpty();
-	return array[0];
+    checkNonEmpty();
+    return array[0];
 }
 
 template<typename T>
 T ArrayList<T>::getLast() const
 {
-	checkNonEmpty();
-	return array[size - 1];
+    checkNonEmpty();
+    return array[size - 1];
 }
 
 template<typename T>
 void ArrayList<T>::add(int position, T item)
 {
-	if (position == size)
-	{
-		add(item);
-		return;
-	}
-	checkPosition(position);
-	shiftRigth(position);
-	array[position] = item;
+    if (position == size)
+    {
+        add(item);
+        return;
+    }
+    checkPosition(position);
+    shiftRigth(position);
+    array[position] = item;
 }
 
 template<typename T>
 void ArrayList<T>::set(int position, T item)
 {
-	checkPosition(position);
-	array[position] = item;
+    checkPosition(position);
+    array[position] = item;
 }
 
 template<typename T>
 void ArrayList<T>::remove(int position)
 {
-	checkPosition(position);
-	shiftLeft(position);
+    checkPosition(position);
+    shiftLeft(position);
 }
 
 template<typename T>
 void ArrayList<T>::removeFirst()
 {
-	checkNonEmpty();
-	remove(0);
+    checkNonEmpty();
+    remove(0);
 }
 
 template<typename T>
 void ArrayList<T>::removeLast()
 {
-	checkNonEmpty();
-	remove(size - 1);
+    checkNonEmpty();
+    remove(size - 1);
 }

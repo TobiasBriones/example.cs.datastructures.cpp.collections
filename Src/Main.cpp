@@ -84,7 +84,6 @@ int main()
     cout << std::endl;
     cout << ll.getLast() << std::endl;
 
-
     cout << std::endl;
     cout << ll.get(5) << std::endl;
     ll.clear();
@@ -94,5 +93,5 @@ int main()
         cout << ll.get(i) << std::endl;
     }
     cout << std::endl;
-	return 0;
+    return 0;
 }

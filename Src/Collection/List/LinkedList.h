@@ -6,9 +6,10 @@
  */
 
 #pragma once
+
 #include "List.h"
 
-template <typename T>
+template<typename T>
 class LinkedList : public List<T>
 {
 
@@ -22,8 +23,8 @@ private:
         Node* next;
 
         Node();
-
     };
+
     int size;
     Node* const tail;
     Node* const head;
@@ -35,23 +36,34 @@ protected:
 
 public:
     LinkedList();
+
     LinkedList(LinkedList<T>*);
+
     ~LinkedList();
 
     int getSize() const;
+
     bool isEmpty() const;
+
     void add(T);
+
     void clear();
 
     T get(int) const;
-    T getFirst() const;
-    T getLast() const;
-    void add(int, T);
-    void set(int, T);
-    void remove(int);
-    void removeFirst();
-    void removeLast();
 
+    T getFirst() const;
+
+    T getLast() const;
+
+    void add(int, T);
+
+    void set(int, T);
+
+    void remove(int);
+
+    void removeFirst();
+
+    void removeLast();
 };
 
 template<typename T>
@@ -93,7 +105,8 @@ LinkedList<T>::~LinkedList()
 
 // --------------------------------------------- PRIVATE METHODS --------------------------------------------- //
 template<typename T>
-void LinkedList<T>::init() {
+void LinkedList<T>::init()
+{
     size = 0;
     tail->next = head;
     head->previous = tail;
@@ -148,7 +161,8 @@ void LinkedList<T>::add(T item)
 }
 
 template<typename T>
-void LinkedList<T>::clear() {
+void LinkedList<T>::clear()
+{
     Node* currentNode = tail->next;
     Node* tmp = 0;
 
