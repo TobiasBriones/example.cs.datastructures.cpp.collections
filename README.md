@@ -1,6 +1,6 @@
 # Example Project: Collections Implementation in CPP
 
-[![GitHub Repository](https://raw.githubusercontent.com/tobiasbriones/static/main/gh-badge.svg)](https://github.com/tobiasbriones/)
+[![GitHub Repository](https://raw.githubusercontent.com/tobiasbriones/static/main/gh-badge.svg)](https://github.com/tobiasbriones/ep-collections-impl-in-cpp)
 
 [![GitHub Project License](https://img.shields.io/github/license/tobiasbriones/ep-collections-impl-in-cpp.svg?style=flat-square)](https://github.com/tobiasbriones/ep-collections-impl-in-cpp/blob/main/LICENSE)
 
